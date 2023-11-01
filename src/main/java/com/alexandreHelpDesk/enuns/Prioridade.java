@@ -1,4 +1,4 @@
-package com.alexandreHelpDesk.domains.enuns;
+package com.alexandreHelpDesk.enuns;
 
 public enum Prioridade {
 
