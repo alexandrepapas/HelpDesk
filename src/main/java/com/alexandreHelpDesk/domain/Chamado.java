@@ -2,20 +2,30 @@ package com.alexandreHelpDesk.domain;
 
 import com.alexandreHelpDesk.enuns.Prioridade;
 import com.alexandreHelpDesk.enuns.Status;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
-
-public class Chamado {
-
+@Entity
+public class Chamado implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataAberutra = LocalDate.now();
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataFechamento;
     private Prioridade prioridade;
     private Status status;
     private String titulo;
     private String observacoes;
 
+    @ManyToOne
+    @JoinColumn(name="tecnico_id")
     private Tecnico tecnico;
+    @ManyToOne
+    @JoinColumn(name="cliente_id")
     private Cliente cliente;
 
     public Chamado(Integer id, Prioridade prioridade, Status status, String titulo, String observacoes, Tecnico tecnico, Cliente cliente) {
