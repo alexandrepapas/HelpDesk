@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 @Entity
 public class Chamado implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -21,6 +23,8 @@ public class Chamado implements Serializable {
     private String titulo;
     private String observacoes;
 
+
+
     @ManyToOne
     @JoinColumn(name="tecnico_id")
     private Tecnico tecnico;
@@ -28,6 +32,12 @@ public class Chamado implements Serializable {
     @JoinColumn(name="cliente_id")
     private Cliente cliente;
 
+
+
+    public Chamado(){
+        super();
+
+    }
     public Chamado(Integer id, Prioridade prioridade, Status status, String titulo, String observacoes, Tecnico tecnico, Cliente cliente) {
         this.id = id;
         this.prioridade = prioridade;
