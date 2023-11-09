@@ -1,6 +1,7 @@
 package com.alexandreHelpDesk.services;
 
 import com.alexandreHelpDesk.domain.Tecnico;
+import com.alexandreHelpDesk.execptions.ObjectNotFoundExecpetion;
 import com.alexandreHelpDesk.repositories.TecnicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public class TecnicoService {
 
     public Tecnico findById(Integer id){
         Optional<Tecnico> obj= tecnicoRepository.findById(id);
-        return obj.orElse(null);
+        return obj.orElseThrow(()-> new ObjectNotFoundExecpetion("Objeto não encontrado id: "+id));
     }
 
 
