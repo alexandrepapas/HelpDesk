@@ -1,6 +1,7 @@
 package com.alexandreHelpDesk.services;
 
 import com.alexandreHelpDesk.domain.Tecnico;
+import com.alexandreHelpDesk.dtos.TecnicoDTO;
 import com.alexandreHelpDesk.execptions.ObjectNotFoundExecpetion;
 import com.alexandreHelpDesk.repositories.TecnicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,11 @@ public class TecnicoService {
 
     public List<Tecnico> findAll() {
         return  tecnicoRepository.findAll();
+    }
+
+    public Tecnico create(TecnicoDTO tecnicoDTO) {
+        tecnicoDTO.setId(null);
+        Tecnico newObj = new Tecnico(tecnicoDTO);
+        return tecnicoRepository.save( newObj);
     }
 }
