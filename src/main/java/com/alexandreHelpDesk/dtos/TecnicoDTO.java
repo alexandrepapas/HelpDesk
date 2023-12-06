@@ -6,6 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -17,11 +18,13 @@ public class TecnicoDTO  implements Serializable {
     private static final long serialVersionUID = 1L;
 
     protected  Integer id;
+    @NotNull(message = "O Campo Nome é requerido")
     protected  String nome;
-
+    @NotNull(message = "O Campo CPF é requerido")
     protected  String cpf;
-
+    @NotNull(message = "O Campo EMAIL é requerido")
     protected  String email;
+    @NotNull(message = "O Campo SENHA é requerido")
     protected  String senha;
 
     protected Set<Integer> perfis= new HashSet<>();
